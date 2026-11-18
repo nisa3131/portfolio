@@ -101,3 +101,21 @@
     if (!reduce) requestAnimationFrame(step);
   });
 })();
+
+// Certificate lightbox
+(function () {
+  var dlg = document.getElementById('lightbox');
+  if (!dlg || typeof dlg.showModal !== 'function') return;
+  var img = document.getElementById('lb-img'), title = document.getElementById('lb-title');
+  document.querySelectorAll('.cert-thumb').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      img.src = a.getAttribute('data-full');
+      img.alt = a.getAttribute('data-title') + ' certificate';
+      title.textContent = a.getAttribute('data-title');
+      dlg.showModal();
+    });
+  });
+  document.getElementById('lb-close').addEventListener('click', function () { dlg.close(); });
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+})();
