@@ -320,3 +320,6 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 600; text-wrap: bala
 .lb-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--line); color: var(--ink); }
 .lb-close { font: inherit; font-size: 14px; background: var(--bg); border: 1px solid var(--line); color: var(--ink); border-radius: 8px; padding: 6px 12px; cursor: pointer; }
 .lightbox img { width: 100%; max-height: 80vh; object-fit: contain; background: var(--bg); }
+.lead-feature { display: grid; grid-template-columns: 180px 1fr; gap: 24px; align-items: center; }
+.lead-feature img { border-radius: 12px; border: 1px solid var(--line); }
+@media (max-width: 560px) { .lead-feature { grid-template-columns: 1fr; } .lead-feature img { max-width: 220px; } }
