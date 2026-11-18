@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Nusrat Tabassum Nisa: undergraduate AI researcher in machine learning, cybersecurity and digital health at Daffodil International University.">
+<meta name="author" content="Nusrat Tabassum Binte Nowsher Nisa">
+<link rel="icon" href="photo.jpg">
+<title>Nusrat Tabassum Nisa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* Layout idea: a research-lab notebook. Narrow left rail of section labels, wide right column of entries; one portrait hero sized to content. */
+  :root {
+    --bg: #f5f7fa;
+    --surface: #ffffff;
+    --ink: #17212e;
+    --muted: #5a6677;
+    --line: #d9e0e9;
+    --accent: #23507f;
+    --accent-soft: #e4ecf5;
+    --ok: #2f7a4d;
+    --ok-soft: #e3f2e8;
+    --font-display: "Newsreader", Georgia, "Times New Roman", serif;
+    --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1520; --surface: #161e2b; --ink: #e6ebf2; --muted: #9aa7b8; --line: #263244;
+      --accent: #8db8e6; --accent-soft: #1c2a3d; --ok: #7fcf9b; --ok-soft: #17301f; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1520; --surface: #161e2b; --ink: #e6ebf2; --muted: #9aa7b8; --line: #263244;
+    --accent: #8db8e6; --accent-soft: #1c2a3d; --ok: #7fcf9b; --ok-soft: #17301f; color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+  img { max-width: 100%; display: block; }
+  h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; font-weight: 600; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* Nav */
+  nav { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 56px; }
+  nav .mark { font-family: var(--font-display); font-size: 19px; font-weight: 600; color: var(--ink); text-decoration: none; }
+  nav ul { list-style: none; display: flex; gap: 22px; margin: 0; padding: 0; font-size: 14px; }
+  nav ul a { color: var(--muted); text-decoration: none; }
+  nav ul a:hover { color: var(--ink); }
+  @media (max-width: 760px) { nav ul { display: none; } }
+
+  /* Hero */
+  .hero { padding: 56px 0 40px; display: grid; grid-template-columns: 260px 1fr; gap: 48px; align-items: center; }
+  .portrait { border-radius: 14px; overflow: hidden; border: 1px solid var(--line); aspect-ratio: 1; background: var(--accent-soft); }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; }
+  .eyebrow { font-family: var(--font-mono); font-size: 13px; color: var(--accent); letter-spacing: .04em; margin: 0 0 10px; }
+  .hero h1 { font-size: clamp(34px, 5vw, 52px); line-height: 1.05; margin: 0 0 6px; }
+  .hero .fullname { color: var(--muted); font-size: 15px; margin: 0 0 18px; }
+  .hero .lede { font-size: 18px; max-width: 62ch; margin: 0 0 22px; }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 500; }
+  .btn:hover { border-color: var(--accent); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+  @media (max-width: 760px) { .hero { grid-template-columns: 1fr; gap: 28px; padding-top: 32px; } .portrait { max-width: 220px; } }
+
+  .stats { display: grid; grid-template-columns: repeat(5, 1fr); border: 1px solid var(--line); border-radius: 12px; background: var(--surface); margin-bottom: 24px; }
+  .stats div { padding: 16px 14px; border-right: 1px solid var(--line); }
+  .stats div:last-child { border-right: 0; }
+  .stats b { display: block; font-family: var(--font-display); font-size: 30px; font-weight: 600; color: var(--accent); line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .stats span { font-size: 13px; color: var(--muted); }
+  @media (max-width: 760px) { .stats { grid-template-columns: repeat(2, 1fr); } .stats div { border-bottom: 1px solid var(--line); } }
+
+  /* Sections */
+  section.block { display: grid; grid-template-columns: 200px 1fr; gap: 40px; padding: 44px 0; border-top: 1px solid var(--line); }
+  .label h2 { font-size: 26px; margin: 0 0 6px; line-height: 1.15; }
+  .label p { margin: 0; font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); }
+  @media (max-width: 760px) { section.block { grid-template-columns: 1fr; gap: 18px; padding: 32px 0; } }
+
+  .prose p { margin: 0 0 14px; max-width: 68ch; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+  .tag { font-size: 13px; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--ink); }
+
+  /* Publications */
+  ol.pubs { list-style: none; counter-reset: p; margin: 0; padding: 0; display: grid; gap: 14px; }
+  ol.pubs li { counter-increment: p; display: grid; grid-template-columns: 36px 1fr; gap: 6px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px 18px 14px; }
+  ol.pubs li::before { content: counter(p, decimal-leading-zero); font-family: var(--font-mono); font-size: 13px; color: var(--muted); padding-top: 3px; }
+  .pub-title { font-family: var(--font-display); font-size: 20px; line-height: 1.3; margin: 0 0 6px; font-weight: 600; }
+  .authors { font-size: 14px; color: var(--muted); margin: 0 0 4px; }
+  .authors b { color: var(--ink); }
+  .venue { font-size: 14px; font-style: italic; margin: 0 0 10px; }
+  .meta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: 13.5px; }
+  .pill { font-family: var(--font-mono); font-size: 11.5px; padding: 3px 9px; border-radius: 999px; letter-spacing: .03em; }
+  .pill.pub { background: var(--accent-soft); color: var(--accent); }
+  .pill.acc { background: var(--ok-soft); color: var(--ok); }
+  .summary { font-family: var(--font-mono); font-size: 13px; color: var(--muted); margin: 0 0 14px; }
+
+  /* Projects */
+  .feature { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin-bottom: 18px; }
+  .feature .body { padding: 22px 24px; }
+  .feature.with-media { display: grid; grid-template-columns: 1.15fr 1fr; }
+  .feature.with-media figure { margin: 0; background: #05070d; display: flex; flex-direction: column; justify-content: center; }
+  .feature.with-media figcaption { color: #b9c3d3; font-size: 12.5px; padding: 8px 14px 12px; font-family: var(--font-mono); }
+  @media (max-width: 860px) { .feature.with-media { grid-template-columns: 1fr; } }
+  .kicker { font-family: var(--font-mono); font-size: 12px; color: var(--accent); margin: 0 0 6px; }
+  .feature h3 { font-size: 24px; margin: 0 0 4px; line-height: 1.2; }
+  .feature .sub { color: var(--muted); font-size: 14px; margin: 0 0 12px; }
+  .feature ul { margin: 0 0 14px; padding-left: 18px; }
+  .feature li { margin-bottom: 6px; }
+  .rule { font-family: var(--font-mono); font-size: 13px; background: var(--accent-soft); border-radius: 8px; padding: 10px 12px; margin: 0 0 14px; }
+  .stack { font-size: 13px; color: var(--muted); margin: 0 0 14px; }
+
+  .repo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin-top: 8px; }
+  .repo { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 8px; }
+  .repo h4 { margin: 0; font-size: 16px; font-weight: 600; }
+  .repo p { margin: 0; font-size: 14px; color: var(--muted); flex: 1; }
+  .repo .metric { font-family: var(--font-mono); font-size: 12.5px; color: var(--ink); }
+  .repo .foot { display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+  .lang { font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+  h3.group { font-size: 19px; margin: 26px 0 4px; }
+
+  /* Skills */
+  dl.skills { display: grid; grid-template-columns: 170px 1fr; gap: 12px 20px; margin: 0; }
+  dl.skills dt { font-weight: 600; font-size: 14px; }
+  dl.skills dd { margin: 0; font-size: 15px; color: var(--muted); }
+  @media (max-width: 560px) { dl.skills { grid-template-columns: 1fr; gap: 2px; } dl.skills dd { margin-bottom: 10px; } }
+
+  /* Timeline lists */
+  .list { display: grid; gap: 0; }
+  .list .row { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .list .row:last-child { border-bottom: 0; }
+  .list .t { font-weight: 600; }
+  .list .m { color: var(--muted); font-size: 14px; grid-column: 1 / -1; }
+  .list .d { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); white-space: nowrap; }
+
+  .edu { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 22px; }
+  .edu h3 { margin: 0 0 4px; font-size: 21px; }
+  .edu p { margin: 2px 0; }
+  .edu .m { color: var(--muted); font-size: 14px; }
+
+  .contact-card { display: flex; flex-wrap: wrap; gap: 10px 28px; font-size: 15px; }
+  .contact-card div span { display: block; font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+  footer { padding: 28px 0 40px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+
+<nav aria-label="Sections">
+  <div class="wrap">
+    <a class="mark" href="#top">Nusrat T. Nisa</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap" id="top">
+  <div class="hero">
+    <div class="portrait"><img src="photo.jpg" alt="Portrait of Nusrat Tabassum Nisa"></div>
+    <div>
+      <p class="eyebrow">B.Sc. CSE · Artificial Intelligence major · Daffodil International University</p>
+      <h1>Nusrat Tabassum Nisa</h1>
+      <p class="fullname">Nusrat Tabassum Binte Nowsher Nisa · Dhaka, Bangladesh</p>
+      <p class="lede">Undergraduate AI researcher working where machine learning meets cybersecurity and digital health. Three IEEE conference papers, a NASA Space Apps 2026 landslide early-warning system, and ML projects built from raw data to deployed apps.</p>
+      <div class="links">
+        <a class="btn primary" href="Nusrat_Tabassum_Nisa_CV.pdf">Download CV</a>
+        <a class="btn" href="https://github.com/nisa3131">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/nusrat-tabassum-nisa-0b7811408">LinkedIn</a>
+        <a class="btn" href="mailto:tabassumnusrat1010@gmail.com">tabassumnusrat1010@gmail.com</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats" aria-label="At a glance">
+    <div><b>3</b><span>IEEE conference papers</span></div>
+    <div><b>3.35</b><span>CGPA out of 4.00</span></div>
+    <div><b>9th</b><span>Semester, AI major</span></div>
+    <div><b>8</b><span>Research &amp; ML projects</span></div>
+    <div><b>6</b><span>Certifications &amp; awards</span></div>
+  </div>
+
+  <section class="block" id="about">
+    <div class="label"><h2>About</h2><p>Research interests</p></div>
+    <div class="prose">
+      <p>I am a final-year Computer Science &amp; Engineering student in my 9th semester at Daffodil International University, majoring in Artificial Intelligence. My research applies machine learning to automated threat detection and cyber-attack classification, and deep learning to medical images, most recently comparing CNN, hybrid and Transformer models for nuclei segmentation in histopathology.</p>
+      <p>Outside the lab I like building complete systems: a Bangla voice-first health screening platform for rural community health workers, a lab-safety robot that calls for help on its own, and a landslide early-warning prototype that cross-checks ground sensors against NASA's NISAR radar data before raising an alarm.</p>
+      <div class="tags">
+        <span class="tag">Machine Learning</span><span class="tag">Cybersecurity</span><span class="tag">Digital Health</span><span class="tag">Medical Image Segmentation</span><span class="tag">Remote Sensing for Disaster Risk</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="education">
+    <div class="label"><h2>Education</h2><p>2023 – 2027</p></div>
+    <div class="edu">
+      <h3>Daffodil International University</h3>
+      <p>B.Sc. in Computer Science &amp; Engineering, <b>Major: Artificial Intelligence</b></p>
+      <p class="m">Currently in 9th semester · Expected graduation 2027 · CGPA 3.35 / 4.00 (through 8th semester)</p>
+    </div>
+  </section>
+
+  <section class="block" id="publications">
+    <div class="label"><h2>Publications</h2><p>3 IEEE papers<br>2 published · 1 accepted</p></div>
+    <div>
+      <ol class="pubs">
+        <li>
+          <div>
+            <p class="pub-title">Comparative Evaluation of CNN, Hybrid, and Transformer Architectures for Nuclei Segmentation in Histopathology</p>
+            <p class="authors">Emtiaz, A. K. M. S., Hafiz, M. M. G., Mahmud, M., Shahriar, M. M., <b>Nisa, N. T. B. N.</b>, Simi, S. A., &amp; Al Jubair, M. A.</p>
+            <p class="venue">2026 IEEE International Conference on Biomedical Engineering, Computer and Information Technology for Health (BECITHCON), IUBAT, Dhaka, September 2026</p>
+            <div class="meta-row"><span class="pill acc">ACCEPTED · TO APPEAR</span><span>IEEE copyright transferred; DOI forthcoming in IEEE Xplore</span><a href="https://iubat.edu/?p=20229">Conference page</a></div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <p class="pub-title">A Comparative Machine Learning Approach for Multi-Class Cyber Attack Classification</p>
+            <p class="authors">Murshid, M. M., Barua, A., Mahmud, E., <b>Nisa, N. T. B. N.</b>, Turja, M. T., &amp; Arnob, S. D.</p>
+            <p class="venue">2026 IEEE 2nd International Conference on Quantum Photonics, Artificial Intelligence &amp; Networking (QPAIN), Rangpur, Bangladesh</p>
+            <div class="meta-row"><span class="pill pub">PUBLISHED</span><a href="https://doi.org/10.1109/QPAIN69676.2026.11546059">doi.org/10.1109/QPAIN69676.2026.11546059</a></div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <p class="pub-title">Identifying Malicious and Benign Prompts in AI Agent Evasion Attacks Using Machine Learning</p>
+            <p class="authors">Mahmud, E., Murshid, M. M., Barua, A., <b>Nisa, N. T. B. N.</b>, Arnob, S. D., &amp; Turja, M. T.</p>
+            <p class="venue">2026 IEEE 2nd International Conference on Quantum Photonics, Artificial Intelligence &amp; Networking (QPAIN), Rangpur, Bangladesh</p>
+            <div class="meta-row"><span class="pill pub">PUBLISHED</span><a href="https://doi.org/10.1109/QPAIN69676.2026.11546222">doi.org/10.1109/QPAIN69676.2026.11546222</a></div>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" id="projects">
+    <div class="label"><h2>Projects</h2><p>3 competition projects<br>5 ML &amp; software repos</p></div>
+    <div>
+      <article class="feature with-media">
+        <div class="body">
+          <p class="kicker">NASA SPACE APPS CHALLENGE 2026 · NOV 2026</p>
+          <h3>Pahar Prohori (The Hill Guardian)</h3>
+          <p class="sub">NISAR-powered landslide early warning for the Chittagong Hill Tracts</p>
+          <ul>
+            <li>Fuses ground-sensor streams, stored NISAR radar features (soil moisture, slope creep, coherence) and slope data in a 12-feature Random Forest that scores six hills.</li>
+            <li>Bilingual English/Bangla alerts on web and mobile, with nearest-shelter routing.</li>
+          </ul>
+          <p class="rule">DANGER = probability ≥ 0.60 AND ground soil wet (≥ 0.32 m³/m³) AND NISAR confirms wet soil or creep. Otherwise WATCH. DANGER holds 24 h.</p>
+          <p class="stack">Python · FastAPI · SQLite · scikit-learn · pandas · TypeScript · Expo / React Native · Leaflet · Docker</p>
+          <div class="links">
+            <a class="btn primary" href="https://pahar-prohori-204-136-10-51.sslip.io">Live demo</a>
+            <a class="btn" href="https://github.com/nisa3131/NasaSpaceAppChallenge">Source code</a>
+          </div>
+        </div>
+        <figure>
+          <img src="nasa-cert.jpg" alt="NASA Space Apps Challenge 2026 Galactic Problem Solver certificate awarded to Nusrat Tabassum Nisa">
+          <figcaption>Galactic Problem Solver certificate · NASA Space Apps Challenge, Nov 14–15, 2026</figcaption>
+        </figure>
+      </article>
+
+      <article class="feature">
+        <div class="body">
+          <p class="kicker">IEEE ICADHI 2026 IDEA COMPETITION · JUN 2026</p>
+          <h3>ShasthoBondhu AI</h3>
+          <p class="sub">Bangla voice-powered rural NCD risk intelligence platform · Team DIUxDIU (two members)</p>
+          <ul>
+            <li>AI platform for preventive non-communicable disease screening of rural adults, built around Community Health Workers as the primary users.</li>
+            <li>Composite risk score grounded in BDHS, WHO SEARO and UNDP data, with Green / Amber / Red triage.</li>
+            <li>Bangla voice-first, offline-capable mobile design: speech recognition, NLP symptom extraction and on-device ML inference. Presented at IEEE ICADHI 2026.</li>
+          </ul>
+          <div class="links"><a class="btn" href="https://github.com/nisa3131/sastho-bondhu-ai">Source code</a></div>
+        </div>
+      </article>
+
+      <article class="feature">
+        <div class="body">
+          <p class="kicker">INNOVATION FOR NUCLEAR (I4N) 2026 · BYNC</p>
+          <h3>Autonomous AI Laboratory Assistant &amp; Life-Saving Rover</h3>
+          <p class="sub">Context-aware robotic lab safety system · With MD Samiull Azim Tishad and Reazul Akter Zishan · Mentor: Minhaj Niloy, DIU</p>
+          <ul>
+            <li>Raspberry Pi 5 robot running YOLOv8-Nano object detection and human pose estimation, with an Arduino UNO for actuation and safety interlocks.</li>
+            <li>4-DOF arm with a silicone-padded, pressure-sensing gripper for handling glassware.</li>
+            <li>Dual-sensor (Flame + MQ-2) hazard confirmation and pose-based fall detection trigger fire-service or ambulance calls and SMS through a GSM SIM800L module; every event is logged to SQLite.</li>
+          </ul>
+        </div>
+      </article>
+
+      <h3 class="group">Machine learning &amp; software repositories</h3>
+      <div class="repo-grid">
+        <div class="repo">
+          <h4>Sales Prediction</h4>
+          <p>Models sales from TV, radio and newspaper advertising spend, comparing regression models on held-out data.</p>
+          <span class="metric">Quadratic ridge · test MAE 0.485 · R² 0.988</span>
+          <div class="foot"><span class="lang">Python · scikit-learn</span><a href="https://github.com/nisa3131/_SalesPrediction">View repo</a></div>
+        </div>
+        <div class="repo">
+          <h4>Car Price Prediction</h4>
+          <p>Predicts used-vehicle selling prices with feature engineering, training-only model selection and testing on unseen vehicle-name groups.</p>
+          <span class="metric">Random Forest · lowest test MAE</span>
+          <div class="foot"><span class="lang">Python · scikit-learn</span><a href="https://github.com/nisa3131/_CarPricePrediction">View repo</a></div>
+        </div>
+        <div class="repo">
+          <h4>Unemployment Analysis</h4>
+          <p>Cleans and visualises two Indian unemployment datasets: Covid-period changes, regional gaps and rural–urban patterns.</p>
+          <span class="metric">Descriptive analysis, no causal claims</span>
+          <div class="foot"><span class="lang">Python · pandas</span><a href="https://github.com/nisa3131/_UnemploymentAnalysis">View repo</a></div>
+        </div>
+        <div class="repo">
+          <h4>Iris Flower Classification</h4>
+          <p>Classifies three Iris species from flower measurements, with model comparison and group-aware evaluation.</p>
+          <span class="metric">30 / 30 held-out samples correct</span>
+          <div class="foot"><span class="lang">Python · scikit-learn</span><a href="https://github.com/nisa3131/_IrisFlowerClassification">View repo</a></div>
+        </div>
+        <div class="repo">
+          <h4>Student Management System</h4>
+          <p>Student-record management application written in C.</p>
+          <span class="metric">Systems programming</span>
+          <div class="foot"><span class="lang">C</span><a href="https://github.com/nisa3131/Student-Management-System">View repo</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="skills">
+    <div class="label"><h2>Skills</h2><p>Tools I have shipped with</p></div>
+    <dl class="skills">
+      <dt>Languages</dt><dd>Python, C++, C, SQL, JavaScript, TypeScript</dd>
+      <dt>AI / ML</dt><dd>scikit-learn, pandas, NumPy, Matplotlib, Jupyter; classification, regression, model selection, group-aware evaluation; CNN, hybrid and Transformer segmentation models; YOLOv8, pose estimation</dd>
+      <dt>Development</dt><dd>FastAPI, Uvicorn, SQLite, Expo / React Native, Leaflet, REST APIs, Docker</dd>
+      <dt>Hardware &amp; IoT</dt><dd>Raspberry Pi 5, Arduino UNO, GSM SIM800L, flame and MQ-2 gas sensors</dd>
+      <dt>Tools &amp; cloud</dt><dd>Git, GitHub, AWS Cloud Foundations</dd>
+    </dl>
+  </section>
+
+  <section class="block" id="awards">
+    <div class="label"><h2>Awards &amp; certifications</h2><p>6 total</p></div>
+    <div class="list">
+      <div class="row"><span class="t">Galactic Problem Solver, NASA Space Apps Challenge 2026</span><span class="d">Nov 2026</span><span class="m">NASA with partner space agencies</span></div>
+      <div class="row"><span class="t">Token of Participation, IEEE ICADHI 2026 Idea Competition</span><span class="d">Jun 2026</span><span class="m">Daffodil International University</span></div>
+      <div class="row"><span class="t">Certificate of Participation, Innovation for Nuclear (I4N) Competition</span><span class="d">2026</span><span class="m">I4N × INNOVENTURE Bangladesh, organised by BYNC with AIUB &amp; BAEC</span></div>
+      <div class="row"><span class="t">“From Zero to First Idea” Research Workshop</span><span class="d">Feb 2026</span><span class="m">Health Informatics Research Lab, Dept. of CSE, DIU</span></div>
+      <div class="row"><span class="t">AWS Academy Graduate, AWS Academy Cloud Foundations</span><span class="d">Aug 2025</span><span class="m">20 course hours · <a href="https://www.credly.com/go/6qqRo5ku">Verify digital badge on Credly</a></span></div>
+      <div class="row"><span class="t">SearchMaster: “Unleashing the Google Hackers”</span><span class="d">DIU</span><span class="m">Girls’ Computer Programming Club (GCPC), Dept. of CSE</span></div>
+    </div>
+  </section>
+
+  <section class="block" id="leadership">
+    <div class="label"><h2>Leadership</h2><p>Clubs &amp; activities</p></div>
+    <div class="list">
+      <div class="row"><span class="t">Executive Member, Research &amp; Journal Wing</span><span class="d">CPC</span><span class="m">Computer Programming Club, DIU</span></div>
+      <div class="row"><span class="t">Participant, “Curiosity to Publication”</span><span class="d">Ongoing</span><span class="m">Research Wing, Computer Programming Club, DIU</span></div>
+      <div class="row"><span class="t">Executive Member</span><span class="d">CPC</span><span class="m">Computer Programming Club, DIU</span></div>
+      <div class="row"><span class="t">Executive Member</span><span class="d">Until 2024</span><span class="m">Girls’ Computer Programming Club, DIU</span></div>
+    </div>
+  </section>
+
+  <section class="block" id="contact">
+    <div class="label"><h2>Contact</h2><p>Open to research collaborations and internships</p></div>
+    <div class="contact-card">
+      <div><span>Email</span><a href="mailto:tabassumnusrat1010@gmail.com">tabassumnusrat1010@gmail.com</a></div>
+      <div><span>Phone</span>+880 1601-804068</div>
+      <div><span>GitHub</span><a href="https://github.com/nisa3131">github.com/nisa3131</a></div>
+      <div><span>LinkedIn</span><a href="https://www.linkedin.com/in/nusrat-tabassum-nisa-0b7811408">nusrat-tabassum-nisa</a></div>
+      <div><span>Location</span>Dhaka, Bangladesh</div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">© 2026 Nusrat Tabassum Binte Nowsher Nisa</div></footer>
+</body>
+</html>
