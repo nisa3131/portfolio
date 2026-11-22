@@ -20,13 +20,15 @@ story=[]
 left=[p("NUSRAT TABASSUM BINTE NOWSHER NISA","NameCV"),
       p("B.Sc. in Computer Science &amp; Engineering (9th Semester) | AI Major"),
       p("Dhaka, Bangladesh | +880 1601-804068 | tabassumnusrat1010@gmail.com"),
-      p("nisa3131.github.io/portfolio | github.com/nisa3131")]
+      p('<link href="https://nisa3131.github.io/portfolio/" color="#173a5d"><u>https://nisa3131.github.io/portfolio/</u></link>'),
+      p('<link href="https://github.com/nisa3131" color="#173a5d"><u>https://github.com/nisa3131</u></link>'),
+      p('<link href="https://www.linkedin.com/in/nusrat-tabassum-nisa-0b7811408" color="#173a5d"><u>LinkedIn: linkedin.com/in/nusrat-tabassum-nisa-0b7811408</u></link>')]
 photo=Image(str(root/"photo.jpg"),width=1.22*inch,height=1.39*inch)
 photo.hAlign="RIGHT"
 tab=Table([[left,photo]],colWidths=[5.55*inch,1.25*inch],hAlign="LEFT")
 tab.setStyle(TableStyle([("VALIGN",(0,0),(-1,-1),"MIDDLE"),("LEFTPADDING",(0,0),(-1,-1),0),("RIGHTPADDING",(0,0),(-1,-1),4),("TOPPADDING",(0,0),(-1,-1),0),("BOTTOMPADDING",(0,0),(-1,-1),0)]))
 story.extend([tab,Spacer(1,8),heading("PROFILE"),
-p("B.Sc. in Computer Science &amp; Engineering student (9th semester, major in Artificial Intelligence) at Daffodil International University. Undergraduate researcher with three IEEE conference papers (two published and presented; one accepted) covering machine-learning cybersecurity and medical image segmentation. Former CodeAlpha Data Science intern with experience in ML systems, digital health, robotics and disaster risk."),
+p("B.Sc. in Computer Science &amp; Engineering student (9th semester, major in Artificial Intelligence) at Daffodil International University. Contributor to three IEEE conference papers (two published and presented; one accepted) covering machine-learning cybersecurity and medical image segmentation. Former CodeAlpha Data Science intern with experience in ML systems, digital health, robotics and disaster risk."),
 heading("EDUCATION"),
 p("<b>Daffodil International University</b> | 2023-2027 (expected)"),
 p("B.Sc. in Computer Science &amp; Engineering - Major in Artificial Intelligence | 9th Semester | CGPA 3.35/4.00 (through 8th semester)"),
@@ -35,8 +37,8 @@ p("<b>Data Science Intern (Virtual) - CodeAlpha</b> | 1-30 October 2026"),
 p("Completed four end-to-end data-science projects: Sales Prediction, Car Price Prediction, Unemployment Analysis and Iris Flower Classification. Work covered cleaning, EDA, feature engineering, model comparison and held-out evaluation."),
 heading("RESEARCH &amp; PUBLICATIONS"),
 p("<b>1. Comparative Evaluation of CNN, Hybrid, and Transformer Architectures for Nuclei Segmentation in Histopathology.</b> IEEE BECITHCON 2026, Dhaka - Accepted; DOI forthcoming."),
-p("<b>2. A Comparative Machine Learning Approach for Multi-Class Cyber Attack Classification.</b> IEEE QPAIN 2026 - Published and presented. DOI: 10.1109/QPAIN69676.2026.11546059."),
-p("<b>3. Identifying Malicious and Benign Prompts in AI Agent Evasion Attacks Using Machine Learning.</b> IEEE QPAIN 2026 - Published and presented. DOI: 10.1109/QPAIN69676.2026.11546222."),
+p("<b>2. A Comparative Machine Learning Approach for Multi-Class Cyber Attack Classification.</b> IEEE QPAIN 2026 - Published and presented. DOI: <link href="https://doi.org/10.1109/QPAIN69676.2026.11546059" color="#173a5d"><u>https://doi.org/10.1109/QPAIN69676.2026.11546059</u></link>."),
+p("<b>3. Identifying Malicious and Benign Prompts in AI Agent Evasion Attacks Using Machine Learning.</b> IEEE QPAIN 2026 - Published and presented. DOI: <link href="https://doi.org/10.1109/QPAIN69676.2026.11546222" color="#173a5d"><u>https://doi.org/10.1109/QPAIN69676.2026.11546222</u></link>."),
 heading("PROJECTS")])
 projects=[
 ("Pahar Prohori - NISAR-Powered Landslide Early-Warning System","NASA Space Apps 2026, Galactic Problem Solver. Random Forest fuses ground sensors and NISAR features with SAFE/WATCH/DANGER alerts. Python, FastAPI, scikit-learn, React Native, Leaflet. github.com/nisa3131/NasaSpaceAppChallenge"),
@@ -49,7 +51,12 @@ projects=[
 ("Student Management System","C-language student-record management application. github.com/nisa3131/Student-Management-System")]
 from xml.sax.saxutils import escape
 for title, detail in projects:
- story.append(p("<b>"+escape(title)+"</b> - "+escape(detail),"EntryCV"))
+ import re
+ linkpattern=re.compile(r"(?<!https://)(?<!www\\.)github\\.com/nisa3131/[A-Za-z0-9_\\-/]+")
+ def clickable(m):
+  v=m.group(0)
+  return '<link href="https://'+v+'" color="#173a5d"><u>https://'+v+'</u></link>'
+ story.append(p("<b>"+escape(title)+"</b> - "+linkpattern.sub(clickable,escape(detail)),"EntryCV"))
 story.extend([heading("TECHNICAL SKILLS"),
 p("<b>Languages:</b> Python, C++, C, SQL, JavaScript, TypeScript. <b>ML/Data:</b> scikit-learn, pandas, NumPy, Matplotlib, Jupyter, CNN/Transformer segmentation, YOLOv8."),
 p("<b>Development and Hardware:</b> FastAPI, SQLite, REST APIs, React Native/Expo, Leaflet, Docker, Git/GitHub, Raspberry Pi 5, Arduino UNO, GSM SIM800L."),
@@ -57,11 +64,11 @@ heading("CERTIFICATIONS &amp; AWARDS"),
 p("NASA Space Apps 2026 - Galactic Problem Solver; IEEE QPAIN 2026 - two Presentation Certificates; IEEE ICADHI 2026 and I4N 2026 - Participation; AWS Academy Cloud Foundations; Health Informatics Research Workshop; SearchMaster."),
 heading("LEADERSHIP &amp; ACTIVITIES"),
 p("Campus Associate (Executive Member), International Leadership Competition 2.0; Executive Member, CPC and Research &amp; Journal Wing, DIU; former Executive Member, Girls' Computer Programming Club."),
-heading("PROFESSIONAL REFERENCE"),
+heading("REFERENCE"),
 p("<b>Dr. Md Alamgir Kabir</b> | Associate Professor &amp; Director, MSc in CSE"),
 p("Department of Computer Science and Engineering, Faculty of Science and Information Technology, Daffodil International University"),
 p("Email: kabir.cse@diu.edu.bd | Office: +8809617901233 | Mobile: +88 01723034458"),
-p("Faculty webpage: https://faculty.daffodilvarsity.edu.bd/profile/cse/alamgirkabir.html")])
+p('Faculty profile: <link href="https://faculty.daffodilvarsity.edu.bd/profile/cse/alamgirkabir.html" color="#173a5d"><u>https://faculty.daffodilvarsity.edu.bd/profile/cse/alamgirkabir.html</u></link>')])
 doc=SimpleDocTemplate(str(root/"Nusrat_Tabassum_Nisa_CV.pdf"),pagesize=A4,
  leftMargin=0.65*inch,rightMargin=0.65*inch,topMargin=0.55*inch,bottomMargin=0.52*inch,
  title="Nusrat Tabassum Binte Nowsher Nisa - CV")
