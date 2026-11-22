@@ -55,7 +55,7 @@ for title, detail in projects:
  linkpattern=re.compile(r"github[.]com/nisa3131/[A-Za-z0-9_/-]+")
  def clickable(m):
   v=m.group(0)
-  return "<link href='https://"+'"+v+"'+"' color='#173a5d'><u>https://"+'"+v+"'+"</u></link>"
+  return f"<link href='https://{v}' color='#173a5d'><u>https://{v}</u></link>"
  story.append(p("<b>"+escape(title)+"</b> - "+linkpattern.sub(clickable,escape(detail)),"EntryCV"))
 story.extend([heading("TECHNICAL SKILLS"),
 p("<b>Languages:</b> Python, C++, C, SQL, JavaScript, TypeScript. <b>ML/Data:</b> scikit-learn, pandas, NumPy, Matplotlib, Jupyter, CNN/Transformer segmentation, YOLOv8."),
