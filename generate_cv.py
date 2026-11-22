@@ -37,8 +37,8 @@ p("<b>Data Science Intern (Virtual) - CodeAlpha</b> | 1-30 October 2026"),
 p("Completed four end-to-end data-science projects: Sales Prediction, Car Price Prediction, Unemployment Analysis and Iris Flower Classification. Work covered cleaning, EDA, feature engineering, model comparison and held-out evaluation."),
 heading("RESEARCH &amp; PUBLICATIONS"),
 p("<b>1. Comparative Evaluation of CNN, Hybrid, and Transformer Architectures for Nuclei Segmentation in Histopathology.</b> IEEE BECITHCON 2026, Dhaka - Accepted; DOI forthcoming."),
-p("<b>2. A Comparative Machine Learning Approach for Multi-Class Cyber Attack Classification.</b> IEEE QPAIN 2026 - Published and presented. DOI: <link href="https://doi.org/10.1109/QPAIN69676.2026.11546059" color="#173a5d"><u>https://doi.org/10.1109/QPAIN69676.2026.11546059</u></link>."),
-p("<b>3. Identifying Malicious and Benign Prompts in AI Agent Evasion Attacks Using Machine Learning.</b> IEEE QPAIN 2026 - Published and presented. DOI: <link href="https://doi.org/10.1109/QPAIN69676.2026.11546222" color="#173a5d"><u>https://doi.org/10.1109/QPAIN69676.2026.11546222</u></link>."),
+p("<b>2. A Comparative Machine Learning Approach for Multi-Class Cyber Attack Classification.</b> IEEE QPAIN 2026 - Published and presented. DOI: <link href='https://doi.org/10.1109/QPAIN69676.2026.11546059' color='#173a5d'><u>https://doi.org/10.1109/QPAIN69676.2026.11546059</u></link>."),
+p("<b>3. Identifying Malicious and Benign Prompts in AI Agent Evasion Attacks Using Machine Learning.</b> IEEE QPAIN 2026 - Published and presented. DOI: <link href='https://doi.org/10.1109/QPAIN69676.2026.11546222' color='#173a5d'><u>https://doi.org/10.1109/QPAIN69676.2026.11546222</u></link>."),
 heading("PROJECTS")])
 projects=[
 ("Pahar Prohori - NISAR-Powered Landslide Early-Warning System","NASA Space Apps 2026, Galactic Problem Solver. Random Forest fuses ground sensors and NISAR features with SAFE/WATCH/DANGER alerts. Python, FastAPI, scikit-learn, React Native, Leaflet. github.com/nisa3131/NasaSpaceAppChallenge"),
@@ -52,10 +52,10 @@ projects=[
 from xml.sax.saxutils import escape
 for title, detail in projects:
  import re
- linkpattern=re.compile(r"(?<!https://)(?<!www\\.)github\\.com/nisa3131/[A-Za-z0-9_\\-/]+")
+ linkpattern=re.compile(r"github[.]com/nisa3131/[A-Za-z0-9_/-]+")
  def clickable(m):
   v=m.group(0)
-  return '<link href="https://'+v+'" color="#173a5d"><u>https://'+v+'</u></link>'
+  return "<link href='https://"+'"+v+"'+"' color='#173a5d'><u>https://"+'"+v+"'+"</u></link>"
  story.append(p("<b>"+escape(title)+"</b> - "+linkpattern.sub(clickable,escape(detail)),"EntryCV"))
 story.extend([heading("TECHNICAL SKILLS"),
 p("<b>Languages:</b> Python, C++, C, SQL, JavaScript, TypeScript. <b>ML/Data:</b> scikit-learn, pandas, NumPy, Matplotlib, Jupyter, CNN/Transformer segmentation, YOLOv8."),
