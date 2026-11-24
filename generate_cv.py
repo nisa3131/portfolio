@@ -32,6 +32,8 @@ p("B.Sc. in Computer Science &amp; Engineering student (9th semester, major in A
 heading("EDUCATION"),
 p("<b>Daffodil International University</b> | 2023-2027 (expected)"),
 p("B.Sc. in Computer Science &amp; Engineering - Major in Artificial Intelligence | 9th Semester | CGPA 3.35/4.00 (through 8th semester)"),
+p("<b>Savar Cantonment Public School and College</b> | HSC, 2022 | GPA: 5.00/5.00"),
+p("<b>Savar Cantonment Public School and College</b> | SSC, 2020 | GPA: 5.00/5.00"),
 heading("EXPERIENCE"),
 p("<b>Data Science Intern (Virtual) - CodeAlpha</b> | 1-30 October 2026"),
 p("Completed four end-to-end data-science projects: Sales Prediction, Car Price Prediction, Unemployment Analysis and Iris Flower Classification. Work covered cleaning, EDA, feature engineering, model comparison and held-out evaluation."),
