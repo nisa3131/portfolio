@@ -26,7 +26,7 @@
   </div>
 </header>
 <section class="night"><canvas class="sky" aria-hidden="true"></canvas>
-  <div class="wrap page-hero"><p class="kicker">BUILT &amp; SHIPPED</p><h1 class="rise">Projects</h1><p class="rise d1">Three competition projects and seven machine-learning and software repositories, including two locally tested AI SaaS prototypes.</p></div>
+  <div class="wrap page-hero"><p class="kicker">BUILT &amp; SHIPPED</p><h1 class="rise">Projects</h1><p class="rise d1">Three competition projects and seven machine-learning and software repositories, including two AI SaaS prototypes with hosted demos.</p></div>
 </section>
 <main id="main" class="wrap">
   <section class="section">
@@ -79,15 +79,21 @@
     </div>
     <div data-group style="margin-top:56px">
       <div class="section-head"><div><span class="num">GitHub repositories · 4 built during the CodeAlpha Data Science internship</span><h2>Machine learning &amp; software</h2></div><a href="https://github.com/nisa3131">github.com/nisa3131 →</a></div>
-      <div class="repo-grid"><a class="repo" href="https://github.com/nisa3131/BizMind-AI" data-cat="software">
+      <div class="repo-grid"><article class="repo" data-cat="software">
   <div class="top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5v-15Z"/><path d="M5 19.5A1.5 1.5 0 0 0 6.5 21H19v-3"/></svg></div>
-  <h4>BizMind AI</h4><p>Multi-tenant customer-support prototype with JWT authentication, PDF/FAQ ingestion, vector retrieval, cited answers and query analytics. Optional hosted LLM generation.</p><span class="metric">Local Docker demo · automated checks passed</span>
+  <h4>BizMind AI</h4><p>Multi-tenant customer-support prototype with JWT authentication, PDF/FAQ ingestion, semantic retrieval locally, lexical retrieval on cloud, cited answers and query analytics. Optional hosted LLM generation.</p><span class="metric">Render cloud demo · authenticated access</span>
   <span class="lang"><i style="background:#3572A5"></i>FastAPI · ChromaDB · React · Docker</span>
-</a><a class="repo" href="https://github.com/nisa3131/PromptGuard" data-cat="software">
+
+  <div class="actions" style="flex-wrap:wrap;margin-top:12px"><a class="btn btn-solid" href="https://bizmind-ai-gc1c.onrender.com" target="_blank" rel="noopener noreferrer">Live Demo ↗</a><a class="btn btn-line" href="https://github.com/nisa3131/BizMind-AI" target="_blank" rel="noopener noreferrer">Source Code</a><a class="btn btn-line" href="https://bizmind-ai-gc1c.onrender.com/docs" target="_blank" rel="noopener noreferrer">API Docs</a></div>
+  <small style="display:block;margin-top:8px">Free hosting may cold-start. Invite code required for full access.</small>
+</article><article class="repo" data-cat="software">
   <div class="top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.4 8.3 8 9 4.6-.7 8-4 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg></div>
-  <h4>PromptGuard</h4><p>ML-assisted prompt-injection detection API with TF-IDF, logistic regression, rule-assisted decisions, revocable API keys and a request-monitoring dashboard.</p><span class="metric">Local Docker demo · automated checks passed</span>
+  <h4>PromptGuard</h4><p>ML-assisted prompt-injection detection API with TF-IDF, logistic regression, rule-assisted decisions, revocable API keys and a request-monitoring dashboard.</p><span class="metric">Render cloud demo · authenticated access</span>
   <span class="lang"><i style="background:#3572A5"></i>FastAPI · scikit-learn · React · Recharts</span>
-</a><a class="repo" href="https://github.com/nisa3131/_SalesPrediction" data-cat="ml">
+
+  <div class="actions" style="flex-wrap:wrap;margin-top:12px"><a class="btn btn-solid" href="https://promptguard-nh99.onrender.com" target="_blank" rel="noopener noreferrer">Live Demo ↗</a><a class="btn btn-line" href="https://github.com/nisa3131/PromptGuard" target="_blank" rel="noopener noreferrer">Source Code</a><a class="btn btn-line" href="https://promptguard-nh99.onrender.com/docs" target="_blank" rel="noopener noreferrer">API Docs</a></div>
+  <small style="display:block;margin-top:8px">Free hosting may cold-start. API key required for full access.</small>
+</article><a class="repo" href="https://github.com/nisa3131/_SalesPrediction" data-cat="ml">
   <div class="top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5v-15Z"/><path d="M5 19.5A1.5 1.5 0 0 0 6.5 21H19v-3"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 4h6v6m0-6L10 14M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></div>
   <h4>Sales Prediction</h4><p>Models sales from TV, radio and newspaper advertising spend, comparing regression models on held-out data with a marketing interpretation.</p><span class="metric">Quadratic ridge · MAE 0.485 · R² 0.988</span>
   <span class="lang"><i style="background:#3572A5"></i>Python · scikit-learn</span>
