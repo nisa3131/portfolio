@@ -23,7 +23,7 @@ left=[p("NUSRAT TABASSUM BINTE NOWSHER NISA","NameCV"),
       p('<link href="https://nisa3131.github.io/portfolio/" color="#173a5d"><u>https://nisa3131.github.io/portfolio/</u></link>'),
       p('<link href="https://github.com/nisa3131" color="#173a5d"><u>https://github.com/nisa3131</u></link>'),
       p('<link href="https://www.linkedin.com/in/nusrat-tabassum-nisa-0b7811408" color="#173a5d"><u>LinkedIn: linkedin.com/in/nusrat-tabassum-nisa-0b7811408</u></link>')]
-photo=Image(str(root/"photo.jpg"),width=1.22*inch,height=1.39*inch)
+photo=Image(str(root/"portfolio_photo_highres.jpg"),width=1.22*inch,height=1.39*inch)
 photo.hAlign="RIGHT"
 tab=Table([[left,photo]],colWidths=[5.55*inch,1.25*inch],hAlign="LEFT")
 tab.setStyle(TableStyle([("VALIGN",(0,0),(-1,-1),"MIDDLE"),("LEFTPADDING",(0,0),(-1,-1),0),("RIGHTPADDING",(0,0),(-1,-1),4),("TOPPADDING",(0,0),(-1,-1),0),("BOTTOMPADDING",(0,0),(-1,-1),0)]))
