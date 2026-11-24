@@ -35,20 +35,18 @@ p("B.Sc. in Computer Science &amp; Engineering - Major in Artificial Intelligenc
 heading("EXPERIENCE"),
 p("<b>Data Science Intern (Virtual) - CodeAlpha</b> | 1-30 October 2026"),
 p("Completed four end-to-end data-science projects: Sales Prediction, Car Price Prediction, Unemployment Analysis and Iris Flower Classification. Work covered cleaning, EDA, feature engineering, model comparison and held-out evaluation."),
-heading("RESEARCH &amp; PUBLICATIONS"),
-p("<b>1. Comparative Evaluation of CNN, Hybrid, and Transformer Architectures for Nuclei Segmentation in Histopathology.</b> IEEE BECITHCON 2026, Dhaka - Accepted; DOI forthcoming."),
-p("<b>2. A Comparative Machine Learning Approach for Multi-Class Cyber Attack Classification.</b> IEEE QPAIN 2026 - Published and presented. DOI: <link href='https://doi.org/10.1109/QPAIN69676.2026.11546059' color='#173a5d'><u>https://doi.org/10.1109/QPAIN69676.2026.11546059</u></link>."),
-p("<b>3. Identifying Malicious and Benign Prompts in AI Agent Evasion Attacks Using Machine Learning.</b> IEEE QPAIN 2026 - Published and presented. DOI: <link href='https://doi.org/10.1109/QPAIN69676.2026.11546222' color='#173a5d'><u>https://doi.org/10.1109/QPAIN69676.2026.11546222</u></link>."),
 heading("PROJECTS")])
 projects=[
-("Pahar Prohori - NISAR-Powered Landslide Early-Warning System","NASA Space Apps 2026, Galactic Problem Solver. Random Forest fuses ground sensors and NISAR features with SAFE/WATCH/DANGER alerts. Python, FastAPI, scikit-learn, React Native, Leaflet. github.com/nisa3131/NasaSpaceAppChallenge"),
-("ShasthoBondhu AI - Rural NCD Risk Screening","IEEE ICADHI 2026 idea competition. Bangla voice-first, offline-first community screening with Green/Amber/Red triage. github.com/nisa3131/sastho-bondhu-ai"),
-("Autonomous AI Laboratory Assistant & Life-Saving Rover","I4N 2026. Raspberry Pi 5, YOLOv8-Nano, Arduino, robotic arm and dual-sensor hazard confirmation."),
-("Car Price Prediction","Random Forest regression; feature engineering and held-out evaluation. github.com/nisa3131/_CarPricePrediction"),
-("Sales Prediction","Quadratic ridge regression; MAE 0.485 and R-squared 0.988. github.com/nisa3131/_SalesPrediction"),
-("Unemployment Analysis","Covid-period changes, regional and rural-urban trends using Python and pandas. github.com/nisa3131/_UnemploymentAnalysis"),
+("Pahar Prohori - NISAR-Powered Landslide Early-Warning System","NASA Space Apps 2026; Galactic Problem Solver. Random Forest fusion of ground sensors and stored NISAR features; SAFE/WATCH/DANGER categorization, bilingual alerts and shelter routing. Python, FastAPI, scikit-learn, Expo/React Native, Leaflet. github.com/nisa3131/NasaSpaceAppChallenge"),
+("BizMind AI","Multi-tenant document intelligence and customer-support platform with PDF/FAQ ingestion, cited answers, tenant-filtered retrieval and analytics. React, TypeScript, FastAPI, SQLite, ChromaDB, Docker. github.com/nisa3131/BizMind-AI"),
+("PromptGuard","ML-assisted prompt security gateway with TF-IDF/logistic regression and rule-based detection, API key controls and monitoring dashboard. Python, FastAPI, React, TypeScript, SQLite, Docker. github.com/nisa3131/PromptGuard"),
+("ShasthoBondhu AI - Rural NCD Risk Screening","IEEE ICADHI 2026 idea competition. Bangla voice-first, offline-first community health screening concept; Green/Amber/Red risk triage. github.com/nisa3131/sastho-bondhu-ai"),
+("Autonomous AI Laboratory Assistant & Life-Saving Rover","I4N 2026 innovation competition. Raspberry Pi 5, YOLOv8-Nano, Arduino interlocks, 4-DOF robotic arm and dual-sensor hazard confirmation."),
+("Sales Prediction","Quadratic ridge regression; test MAE 0.485, R-squared 0.988. github.com/nisa3131/_SalesPrediction"),
+("Car Price Prediction","Random Forest regression, feature engineering and held-out testing. github.com/nisa3131/_CarPricePrediction"),
 ("Iris Flower Classification","Group-aware model evaluation; 30/30 held-out predictions correct. github.com/nisa3131/_IrisFlowerClassification"),
-("Student Management System","C-language student-record management application. github.com/nisa3131/Student-Management-System")]
+("Unemployment Analysis","Data cleaning, visual analysis and regional trends. github.com/nisa3131/_UnemploymentAnalysis"),
+("Student Management System","Student-record management application in C. github.com/nisa3131/Student-Management-System")]
 from xml.sax.saxutils import escape
 for title, detail in projects:
  import re
@@ -57,7 +55,11 @@ for title, detail in projects:
   v=m.group(0)
   return f"<link href='https://{v}' color='#173a5d'><u>https://{v}</u></link>"
  story.append(p("<b>"+escape(title)+"</b> - "+linkpattern.sub(clickable,escape(detail)),"EntryCV"))
-story.extend([heading("TECHNICAL SKILLS"),
+story.extend([heading("RESEARCH &amp; PUBLICATIONS"),
+p("<b>1. Comparative Evaluation of CNN, Hybrid, and Transformer Architectures for Nuclei Segmentation in Histopathology.</b> IEEE BECITHCON 2026, Dhaka - Accepted; DOI forthcoming."),
+p("<b>2. A Comparative Machine Learning Approach for Multi-Class Cyber Attack Classification.</b> IEEE QPAIN 2026 - Published and presented. DOI: <link href='https://doi.org/10.1109/QPAIN69676.2026.11546059' color='#173a5d'><u>https://doi.org/10.1109/QPAIN69676.2026.11546059</u></link>."),
+p("<b>3. Identifying Malicious and Benign Prompts in AI Agent Evasion Attacks Using Machine Learning.</b> IEEE QPAIN 2026 - Published and presented. DOI: <link href='https://doi.org/10.1109/QPAIN69676.2026.11546222' color='#173a5d'><u>https://doi.org/10.1109/QPAIN69676.2026.11546222</u></link>."),
+heading("TECHNICAL SKILLS"),
 p("<b>Languages:</b> Python, C++, C, SQL, JavaScript, TypeScript. <b>ML/Data:</b> scikit-learn, pandas, NumPy, Matplotlib, Jupyter, CNN/Transformer segmentation, YOLOv8."),
 p("<b>Development and Hardware:</b> FastAPI, SQLite, REST APIs, React Native/Expo, Leaflet, Docker, Git/GitHub, Raspberry Pi 5, Arduino UNO, GSM SIM800L."),
 heading("CERTIFICATIONS &amp; AWARDS"),
