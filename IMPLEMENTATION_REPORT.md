@@ -1,5 +1,9 @@
 # Portfolio redesign implementation report
 
+## Dark-only update
+
+All six pages now use the same dark palette. The theme switch and browser storage logic were removed, and links, controls, badges, and diagram panels use the shared color tokens. Chrome checks passed across all six pages at nine viewport widths, including with an old light preference and with JavaScript disabled. Twenty-eight sampled text contrast pairs met 4.5:1, with a minimum of 6.55:1. The report below records the original redesign and its QA run.
+
 ## 1. Existing portfolio audit
 
 The clean local checkout contained six static HTML pages, one shared stylesheet, one browser script, the portrait, the current CV PDF, 10 credential originals with thumbnails, and a GitHub Actions CV-refresh workflow. There was no package manifest, site build, lint configuration, test runner, or frontend framework. The checked-in CV workflow regenerates and commits the PDF on selected inputs or manual dispatch. The repository advertises GitHub Pages as its public site.

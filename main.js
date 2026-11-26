@@ -2,7 +2,6 @@
   const root = document.documentElement;
   const toggle = document.querySelector('.menu-toggle');
   const menu = document.getElementById('menu');
-  const theme = document.querySelector('.theme-toggle');
   const mobile = matchMedia('(max-width: 64rem)');
 
   function closeMenu(restoreFocus = false) {
@@ -31,21 +30,8 @@
   });
   mobile.addEventListener('change', () => closeMenu(menu.contains(document.activeElement)));
 
-  theme.setAttribute('aria-pressed', String(root.dataset.theme === 'dark'));
-  theme.addEventListener('click', () => {
-    const mode = root.dataset.theme === 'dark' ? 'light' : 'dark';
-    root.dataset.theme = mode;
-    theme.setAttribute('aria-pressed', String(mode === 'dark'));
-    try {
-      localStorage.setItem('portfolio-theme', mode);
-    } catch {
-      // The current page can still change theme when storage is unavailable.
-    }
-  });
-
   document.getElementById('year').textContent = new Date().getFullYear();
   toggle.hidden = false;
-  theme.hidden = false;
   root.classList.add('js');
 
   const filters = document.querySelector('.filters');
