@@ -1,122 +1,129 @@
-(function () {
-  // Mobile menu
-  var toggle = document.querySelector('.menu-toggle');
-  var menu = document.getElementById('menu');
-  if (toggle && menu) {
-    toggle.addEventListener('click', function () {
-      var open = menu.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+(() => {
+  const root = document.documentElement;
+  const toggle = document.querySelector('.menu-toggle');
+  const menu = document.getElementById('menu');
+  const theme = document.querySelector('.theme-toggle');
+  const mobile = matchMedia('(max-width: 64rem)');
+
+  function closeMenu(restoreFocus = false) {
+    if (!menu.classList.contains('open')) return;
+    if (restoreFocus && mobile.matches) toggle.focus();
+    menu.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+
+  toggle.addEventListener('click', () => {
+    if (menu.classList.contains('open')) {
+      closeMenu(true);
+      return;
+    }
+    menu.classList.add('open');
+    toggle.setAttribute('aria-expanded', 'true');
+  });
+  menu.addEventListener('click', (event) => {
+    if (event.target.closest('a')) closeMenu(true);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMenu(true);
+  });
+  document.addEventListener('focusin', (event) => {
+    if (![toggle, menu].some((element) => element.contains(event.target))) closeMenu();
+  });
+  mobile.addEventListener('change', () => closeMenu(menu.contains(document.activeElement)));
+
+  theme.setAttribute('aria-pressed', String(root.dataset.theme === 'dark'));
+  theme.addEventListener('click', () => {
+    const mode = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    root.dataset.theme = mode;
+    theme.setAttribute('aria-pressed', String(mode === 'dark'));
+    try {
+      localStorage.setItem('portfolio-theme', mode);
+    } catch {
+      // The current page can still change theme when storage is unavailable.
+    }
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+  toggle.hidden = false;
+  theme.hidden = false;
+  root.classList.add('js');
+
+  const filters = document.querySelector('.filters');
+  if (filters) {
+    const buttons = [...filters.querySelectorAll('[data-filter]')];
+    const items = [...document.querySelectorAll('[data-cat]')];
+    const groups = document.querySelectorAll('[data-group]');
+    const status = document.querySelector('.filter-status');
+    const categories = new Map(items.map((item) => [item, item.dataset.cat.split(/\s+/)]));
+    const matches = (item, filter) => filter === 'all' || categories.get(item).includes(filter);
+
+    function applyFilter(selected) {
+      const filter = selected.dataset.filter;
+      buttons.forEach((button) => button.setAttribute('aria-pressed', String(button === selected)));
+      items.forEach((item) => { item.hidden = !matches(item, filter); });
+      groups.forEach((group) => { group.hidden = !group.querySelector('[data-cat]:not([hidden])'); });
+      const count = items.filter((item) => !item.hidden).length;
+      const noun = document.querySelector('.cert-grid') ? 'credential' : 'project';
+      status.textContent = count ? `${count} ${noun}${count === 1 ? '' : 's'} shown.` : `No ${noun}s match this filter.`;
+    }
+
+    buttons.forEach((button) => {
+      const count = items.filter((item) => matches(item, button.dataset.filter)).length;
+      button.textContent = button.textContent.replace(/\s+\(\d+\)$/, '') + ` (${count})`;
+      button.addEventListener('click', () => applyFilter(button));
+    });
+    filters.hidden = false;
+    status.hidden = false;
+    applyFilter(buttons[0]);
+    window.addEventListener('hashchange', () => {
+      const target = document.getElementById(location.hash.slice(1));
+      if (target?.hidden && target.hasAttribute('data-group')) applyFilter(buttons[0]);
     });
   }
 
-  
-  // Footer year
-  var y = document.getElementById('year');
-  if (y) y.textContent = new Date().getFullYear();
-
-  // Copy buttons (citations, email)
-  document.querySelectorAll('[data-copy]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var text = btn.getAttribute('data-copy');
-      var label = btn.textContent;
-      var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = label; }, 1600); };
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(done, function () { fallback(text); done(); });
-      } else { fallback(text); done(); }
+  const copyStatus = document.querySelector('.copy-status');
+  let copyTimer;
+  document.querySelectorAll('[data-copy]').forEach((button) => {
+    button.hidden = false;
+    button.addEventListener('click', async () => {
+      clearTimeout(copyTimer);
+      copyStatus.textContent = '';
+      try {
+        await navigator.clipboard.writeText(button.dataset.copy);
+        copyStatus.textContent = 'Copied to clipboard.';
+      } catch {
+        copyStatus.textContent = 'Could not copy to clipboard.';
+      }
+      clearTimeout(copyTimer);
+      copyTimer = setTimeout(() => { copyStatus.textContent = ''; }, 4000);
     });
   });
-  function fallback(text) {
-    var ta = document.createElement('textarea');
-    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
-    document.body.appendChild(ta); ta.select();
-    try { document.execCommand('copy'); } catch (e) {}
-    document.body.removeChild(ta);
+
+  const dialog = document.getElementById('lightbox');
+  if (dialog && typeof dialog.showModal === 'function') {
+    const image = document.getElementById('lb-img');
+    const title = document.getElementById('lb-title');
+    const close = document.getElementById('lb-close');
+    const original = document.getElementById('lb-original');
+    let opener;
+
+    document.querySelectorAll('.cert-thumb').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        if (event.defaultPrevented || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        opener = link;
+        image.src = link.href;
+        image.alt = link.querySelector('img').alt;
+        title.textContent = link.dataset.title;
+        original.href = link.href;
+        dialog.showModal();
+        close.focus();
+      });
+    });
+    close.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog.addEventListener('close', () => opener?.focus());
   }
-
-  // Project filters
-  var filterBtns = document.querySelectorAll('.filters button');
-  filterBtns.forEach(function (b) {
-    b.addEventListener('click', function () {
-      var f = b.getAttribute('data-filter');
-      filterBtns.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-      document.querySelectorAll('[data-cat]').forEach(function (el) {
-        var cats = el.getAttribute('data-cat').split(' ');
-        el.classList.toggle('hidden', f !== 'all' && cats.indexOf(f) === -1);
-      });
-      document.querySelectorAll('[data-group]').forEach(function (g) {
-        var visible = g.querySelectorAll('[data-cat]:not(.hidden)').length > 0;
-        g.classList.toggle('hidden', !visible);
-      });
-    });
-  });
-
-  // Constellation background: nodes drift slowly and link when close (neural net / star map)
-  var canvases = document.querySelectorAll('canvas.sky');
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  canvases.forEach(function (c) {
-    var ctx = c.getContext('2d');
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    var pts = [], w = 0, h = 0;
-    function size() {
-      var r = c.getBoundingClientRect();
-      w = r.width; h = r.height;
-      c.width = w * dpr; c.height = h * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      var n = Math.round(Math.min(90, (w * h) / 11000));
-      pts = [];
-      for (var i = 0; i < n; i++) {
-        pts.push({ x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - .5) * .18, vy: (Math.random() - .5) * .18, r: Math.random() * 1.4 + .4, gold: Math.random() < .08 });
-      }
-    }
-    function draw() {
-      ctx.clearRect(0, 0, w, h);
-      for (var i = 0; i < pts.length; i++) {
-        var p = pts[i];
-        for (var j = i + 1; j < pts.length; j++) {
-          var q = pts[j], dx = p.x - q.x, dy = p.y - q.y, d = dx * dx + dy * dy;
-          if (d < 13000) {
-            ctx.strokeStyle = 'rgba(140,182,236,' + (0.16 * (1 - d / 13000)).toFixed(3) + ')';
-            ctx.lineWidth = 1;
-            ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
-          }
-        }
-      }
-      for (var k = 0; k < pts.length; k++) {
-        var s = pts[k];
-        ctx.fillStyle = s.gold ? 'rgba(224,164,58,.9)' : 'rgba(220,232,250,.75)';
-        ctx.beginPath(); ctx.arc(s.x, s.y, s.gold ? s.r + .8 : s.r, 0, Math.PI * 2); ctx.fill();
-      }
-    }
-    function step() {
-      for (var i = 0; i < pts.length; i++) {
-        var p = pts[i];
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < -10) p.x = w + 10; if (p.x > w + 10) p.x = -10;
-        if (p.y < -10) p.y = h + 10; if (p.y > h + 10) p.y = -10;
-      }
-      draw();
-      requestAnimationFrame(step);
-    }
-    size(); draw();
-    window.addEventListener('resize', function () { size(); draw(); });
-    if (!reduce) requestAnimationFrame(step);
-  });
-})();
-
-// Certificate lightbox
-(function () {
-  var dlg = document.getElementById('lightbox');
-  if (!dlg || typeof dlg.showModal !== 'function') return;
-  var img = document.getElementById('lb-img'), title = document.getElementById('lb-title');
-  document.querySelectorAll('.cert-thumb').forEach(function (a) {
-    a.addEventListener('click', function (e) {
-      e.preventDefault();
-      img.src = a.getAttribute('data-full');
-      img.alt = a.getAttribute('data-title') + ' certificate';
-      title.textContent = a.getAttribute('data-title');
-      dlg.showModal();
-    });
-  });
-  document.getElementById('lb-close').addEventListener('click', function () { dlg.close(); });
-  dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
 })();
